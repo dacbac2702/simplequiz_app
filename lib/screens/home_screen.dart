@@ -37,10 +37,18 @@ class _HomeScreenState extends State<HomeScreen> {
     if (index == _questions.length - 1) {
       return;
     } else {
-      setState(() {
-        index++; // When the index will change to 1. rebuild the app.
-        isPressed = false;
-      });
+      if (isPressed) {
+        setState(() {
+          index++; // When the index will change to 1. rebuild the app.
+          isPressed = false;
+        });
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('Vui lòng chọn một đáp án'),
+          behavior: SnackBarBehavior.floating,
+          margin: EdgeInsets.symmetric(vertical: 20.0),
+        ));
+      }
     }
   }
 
