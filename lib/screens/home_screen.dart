@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../constants.dart';
 import '../models/question_model.dart';
 import '../widgets/question_widget.dart';
+import '../widgets/next_button.dart';
 
 // Create the HomeScreen widget
 class HomeScreen extends StatefulWidget {
@@ -29,6 +30,17 @@ class _HomeScreenState extends State<HomeScreen> {
   // Create an index to loop through _questions
   int index = 0;
 
+  // Create a function to display the next question
+  void nextQuestion() {
+    if (index == _questions.length - 1) {
+      return;
+    } else {
+      setState(() {
+        index++; // When the index will change to 1. rebuild the app.
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,8 +65,17 @@ class _HomeScreenState extends State<HomeScreen> {
           const Divider(color: neutral),
         ]),
       ),
+
+      // Use the floating action button
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+        child: NextButton(
+          nextQuestion: nextQuestion, // The above function
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
 
-// import this file to our main.dart file
+// Import this file to our main.dart file
