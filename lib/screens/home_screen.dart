@@ -5,6 +5,7 @@ import '../models/question_model.dart';
 import '../widgets/question_widget.dart';
 import '../widgets/next_button.dart';
 import '../widgets/option_card.dart';
+import '../widgets/result_box.dart';
 
 // Create the HomeScreen widget
 class HomeScreen extends StatefulWidget {
@@ -38,7 +39,15 @@ class _HomeScreenState extends State<HomeScreen> {
   bool isAlreadySelected = false;
   void nextQuestion() {
     if (index == _questions.length - 1) {
-      return;
+// This is the block where the questions end.
+      showDialog(
+          context: context,
+          barrierDismissible:
+              false, // This will disable the dissmis function on clicking outside of box
+          builder: (ctx) => ResultBox(
+                result: score, // Total points the user got
+                questionLength: _questions.length, // Out of how many questions
+              ));
     } else {
       if (isPressed) {
         setState(() {
