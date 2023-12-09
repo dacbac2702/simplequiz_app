@@ -14,4 +14,14 @@ class DBconnect {
           'options': question.options,
         }));
   }
+
+  // Fetch the data from database
+  Future<void> fetchQuestion() async {
+    http.get(url).then((response) {
+      // The 'then' method returns a 'response' which is data
+      // To whats inside to decode it first
+      var data = json.decode(response.body);
+      print(data);
+    });
+  }
 }

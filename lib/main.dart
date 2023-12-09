@@ -7,12 +7,13 @@ import './screens/home_screen.dart';
 // Run the main method
 void main() {
   var db = DBconnect();
-  db.addQuestion(Question(id: '3', title: 'What is 20 x 100?', options: {
-    '100': false,
-    '200': true,
-    '300': false,
-    '400': false,
-  }));
+  // db.addQuestion(Question(id: '3', title: 'What is 20 x 100?', options: {
+  //   '100': false,
+  //   '200': true,
+  //   '300': false,
+  //   '400': false,
+  // }));
+  db.fetchQuestion();
   // The runApp method
   runApp(
     const MyApp(),
