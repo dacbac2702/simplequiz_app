@@ -42,10 +42,10 @@ class ResultBox extends StatelessWidget {
             const SizedBox(height: 20.0),
             Text(
               result == questionLength / 2
-                  ? 'Bạn khá hiểu biết' // When the result is half of the questions
+                  ? 'Bạn cũng biết chút ít về Quỷ đỏ rùi đấy nhưng cần tìm hiểu thêm thông tin đi nhé' // When the result is half of the questions
                   : result < questionLength / 2
-                      ? 'Bạn cần cố gắng hơn' // When the result is less than half
-                      : 'Bạn rất xuất sắc!', // When the result is more than half
+                      ? 'Ôi, bạn gần như chưa biết gì về M.U cả. Thế mà cũng đòi làm fan' // When the result is less than half
+                      : 'Bạn đúng là 1 fan cứng của đội bóng. Hãy tiếp tục đồng hành cùng Manchester United nhé!', // When the result is more than half
               style: const TextStyle(
                 color: neutral,
               ),
@@ -54,7 +54,7 @@ class ResultBox extends StatelessWidget {
             GestureDetector(
               onTap: onPressed,
               child: const Text(
-                'Start Over',
+                'Bắt đầu lại',
                 style: TextStyle(
                   color: Colors.blue,
                   fontSize: 20.0,

@@ -7,21 +7,24 @@ class DBconnect {
   // Declare the name of the table to create and add .json as suffix
   final url = Uri.parse(
       'https://simplequizapp-5bd70-default-rtdb.firebaseio.com/questions.json');
-  Future<void> addQuestion(Question question) async {
-    http.post(url,
-        body: json.encode({
-          'title': question.title,
-          'options': question.options,
-        }));
-  }
 
   // Fetch the data from database
-  Future<void> fetchQuestion() async {
-    http.get(url).then((response) {
+  Future<List<Question>> fetchQuestion() async {
+    return http.get(url).then((response) {
       // The 'then' method returns a 'response' which is data
       // To whats inside to decode it first
-      var data = json.decode(response.body);
-      print(data);
+      var data = json.decode(response.body) as Map<String, dynamic>;
+      List<Question> newQuestions = [];
+      data.forEach((key, value) {
+        var newQuestion = Question(
+          id: key,
+          title: value['title'],
+          options: Map.castFrom(value['options']),
+        );
+        // Add to newQuestions
+        newQuestions.add(newQuestion);
+      });
+      return newQuestions;
     });
   }
 }
