@@ -1,6 +1,7 @@
 import 'package:http/http.dart' as http; // The http package
 import './question_model.dart';
 import 'dart:convert';
+import 'dart:math';
 
 class DBconnect {
   // Create  a function to add a question to database.
@@ -21,6 +22,9 @@ class DBconnect {
           title: value['title'],
           options: Map.castFrom(value['options']),
         );
+        // Shuffle the questions using a random number generator
+        final random = Random();
+        newQuestions.shuffle(random);
         // Add to newQuestions
         newQuestions.add(newQuestion);
       });
